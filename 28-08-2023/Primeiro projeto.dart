@@ -1,27 +1,11 @@
-class Carro{
-  String? modelo;
-  int? tanque;
-  String? cor;
-
-// Carro (modelo, tanque, cor){
-//   this.modelo = modelo;
-//   this.tanque = tanque;
-//   this.cor = cor;
-// }
-
-void movimentar(){
-  print("O carro está em movimento.");
-}
-
-}
+import "Classe Carro.dart";
 
 void main(){
   var carro1 = Carro();
   carro1.cor = 'Azul';
-  carro1.tanque = 10;
+  carro1.tanque = -10;
   carro1.modelo = 'Uno';
   // var carro1 = Carro("Gol", 50, "Azul");
 
-  print('Cor do carro: ${carro1.cor}');
+  print('A cor do carro é ${carro1.cor}.');
 }
-
