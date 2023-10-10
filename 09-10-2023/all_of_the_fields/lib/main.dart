@@ -35,11 +35,15 @@ class _MyHomePageState extends State<MyHomePage> {
   String campoEmail = '';
   String campoTelefone = '';
   String campoSenha = '';
+  bool switchValue = false;
+  double valorSlider = 0;
 
   String _campoNome = '';
   String _campoEmail = '';
   String _campoTelefone = '';
   String _campoSenha = '';
+  String _switchValue = '';
+  String _valorSlider = '';
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   onChanged: (value) {
                     campoTelefone = value;
                   },
+                  keyboardType: TextInputType.phone,
+                  // inputFormatters: ,
                   decoration: InputDecoration(
                     labelText: "Telefone",
                     hintText: "Insira seu telefone",
@@ -90,8 +96,46 @@ class _MyHomePageState extends State<MyHomePage> {
                     hintText: "Insira sua senha",
                   ),
                 ),
+                SwitchListTile(
+                    title: const Text("Receber notificações"),
+                    value: switchValue,
+                    onChanged: (bool value) {
+                      setState(() {
+                        switchValue = value;
+                      });
+                    }),
+                Text(
+                  "Nota:",
+                ),
+                Slider(
+                    value: valorSlider,
+                    min: 0,
+                    max: 100,
+                    divisions: 101,
+                    label: valorSlider.round().toString(),
+                    onChanged: (value) {
+                      setState(() {
+                        valorSlider = value;
+                      });
+                    }),
                 SizedBox(
                   height: 30,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _campoNome = campoNome;
+                        _campoEmail = campoEmail;
+                        _campoTelefone = campoTelefone;
+                        _campoSenha = campoSenha;
+                        _switchValue = (switchValue == true) ? "Sim" : "Não";
+                        _valorSlider = valorSlider.round().toString();
+                      });
+                    },
+                    child: const Text("Inserir >",
+                        style: TextStyle(fontSize: 20))),
+                const SizedBox(
+                  height: 20,
                 ),
                 Text(
                   "Nome: $_campoNome",
@@ -109,20 +153,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   "Senha: $_campoSenha",
                   style: const TextStyle(fontSize: 15),
                 ),
-                const SizedBox(
-                  height: 20,
+                Text(
+                  "Notificações: $_switchValue",
+                  style: const TextStyle(fontSize: 15),
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _campoNome = campoNome;
-                        _campoEmail = campoEmail;
-                        _campoTelefone = campoTelefone;
-                        _campoSenha = campoSenha;
-                      });
-                    },
-                    child:
-                        const Text("Inserir >", style: TextStyle(fontSize: 20)))
+                Text(
+                  "Nota: $_valorSlider",
+                  style: const TextStyle(fontSize: 15),
+                ),
               ],
             )),
       ),
