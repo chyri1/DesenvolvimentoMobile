@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Cadastro',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 160, 51, 0)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Cadastro'),
@@ -33,6 +34,11 @@ class _MyHomePageState extends State<MyHomePage> {
   String campoNome = '';
   String campoEmail = '';
   String campoTelefone = '';
+
+  String _campoNome = '';
+  String _campoEmail = '';
+  String _campoTelefone = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,10 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 TextField(
                   onChanged: (value) {
-                    setState(() {
-                      campoNome = value;
-                    });
-                    print(value);
+                    campoNome = value;
                   },
                   decoration: InputDecoration(
                     labelText: "Nome",
@@ -58,32 +61,51 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 TextField(
+                  onChanged: (value) {
+                    campoEmail = value;
+                  },
                   decoration: InputDecoration(
                     labelText: "Email",
                     hintText: "Insira seu email",
                   ),
                 ),
                 TextField(
+                  onChanged: (value) {
+                    campoTelefone = value;
+                  },
                   decoration: InputDecoration(
                     labelText: "Telefone",
                     hintText: "Insira seu telefone",
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 60,
                 ),
                 Text(
-                  "Nome: $campoNome",
-                  style: const TextStyle(fontSize: 30),
+                  "Nome: $_campoNome",
+                  style: const TextStyle(fontSize: 20),
                 ),
                 Text(
-                  "Email: $campoEmail",
-                  style: const TextStyle(fontSize: 30),
+                  "Email: $_campoEmail",
+                  style: const TextStyle(fontSize: 20),
                 ),
                 Text(
-                  "Telefone: $campoTelefone",
-                  style: const TextStyle(fontSize: 30),
+                  "Telefone: $_campoTelefone",
+                  style: const TextStyle(fontSize: 20),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _campoNome = campoNome;
+                        _campoEmail = campoEmail;
+                        _campoTelefone = campoTelefone;
+                      });
+                    },
+                    child:
+                        const Text("Inserir >", style: TextStyle(fontSize: 25)))
               ],
             )),
       ),
